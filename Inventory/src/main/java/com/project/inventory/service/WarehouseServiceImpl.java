@@ -41,18 +41,5 @@ public class WarehouseServiceImpl implements WarehouseService{
 
         return warehouses.stream().map(r -> modelMapper.map(r, Response.class)).collect(Collectors.toList());
     }
-    /*
-    @Override
-    public List<Response> getSearch() {
 
-        List<Warehouse> findQuantity = warehouseRepository.findByQuantity();
-
-        quantity < findQuantity
-        return findQuantity.stream().map(r -> modelMapper.map(r, Response.class)).collect(Collectors.toList());
-    }
-
-    Boolean getcontating(){
-        warehouseRepository.findBy();
-    }
-    */
 }

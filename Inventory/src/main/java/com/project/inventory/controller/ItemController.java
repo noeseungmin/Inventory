@@ -37,7 +37,7 @@ public class ItemController extends AbstractController{
         return ok(itemService.getSearch(typeName));
     }
 
-    @PostMapping("/shortage")
+    @GetMapping("/shortage")
     public ResponseDto<List<Response>> ShortageProducts(@RequestParam String typeName,
                                                         @RequestParam Integer quantity){
         return ok(itemService.ShortageProducts(typeName, quantity));
@@ -46,5 +46,9 @@ public class ItemController extends AbstractController{
     @PostMapping("/type")
     public ResponseDto<ItemTypeDto.Response> create(@RequestBody ItemTypeDto.Request request){
         return ok(itemTypeService.create(request));
+    }
+    @GetMapping("/type")
+    public ResponseDto<List<ItemTypeDto.TypeResponse>> AllTypeGet(){
+        return ok(itemTypeService.getAll());
     }
 }

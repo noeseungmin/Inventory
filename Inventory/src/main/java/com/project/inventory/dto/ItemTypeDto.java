@@ -28,4 +28,13 @@ public class ItemTypeDto {
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
     }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    @Setter
+    @Builder
+    public static class TypeResponse{
+        private String name;
+    }
 }

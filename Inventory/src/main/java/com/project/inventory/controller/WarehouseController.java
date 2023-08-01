@@ -21,7 +21,7 @@ public class WarehouseController extends AbstractController{
 
     private final WarehousingQuotationService warehousingQuotationService;
 
-    @PostMapping("/{itemId}")
+    @PostMapping("/{itemId}/warehouse")
     public ResponseDto<Response> create(@PathVariable Item itemId, @RequestBody Request request){
         return ok(warehouseService.create(itemId, request));
     }
@@ -30,8 +30,17 @@ public class WarehouseController extends AbstractController{
     public ResponseDto<List<Response>> getWarehouses(){
         return ok(warehouseService.getAll());
     }
+    @GetMapping("/quotation")
+    public ResponseDto<List<WarehousingQuotationDto.Response>> getQuotation(){
+        return ok(warehousingQuotationService.getAll());
+    }
 
-    @PostMapping("/{itemId}/quotation")
+    @GetMapping("/{itemId}")
+    public ResponseDto<WarehousingQuotationDto.Response> getQuotation(@PathVariable Long itemId){
+        return ok(warehousingQuotationService.getQuotation(itemId));
+    }
+
+    @PostMapping("/{itemId}")
     public ResponseDto<WarehousingQuotationDto.Response> createQuotation(@PathVariable Item itemId,
                                                                          @RequestBody WarehousingQuotationDto.Request request){
         return ok(warehousingQuotationService.create(itemId, request));
