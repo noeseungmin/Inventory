@@ -1,8 +1,6 @@
 package com.project.inventory.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -11,6 +9,8 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
+@Getter
+@Setter
 @Builder
 @DynamicInsert
 @DynamicUpdate
@@ -25,11 +25,17 @@ public class Item extends BaseEntity{
     @Column(columnDefinition = "varchar(20) DEFAULT NULL COMMENT '상품 코드'")
     private String itemCode;
 
-    @Column(columnDefinition = "varchar(20) DEFAULT NULL COMMENT '종류 ID'")
-    private String typeId;
+    @Column(columnDefinition = "varchar(20) DEFAULT NULL COMMENT '종류 코드'")
+    private String typeCode;
+
+    @Column(columnDefinition = "varchar(20) DEFAULT NULL COMMENT '종류 이름'")
+    private String typeName;
 
     @Column(columnDefinition = "varchar(20) DEFAULT NULL COMMENT '상품 이름'")
     private String name;
+
+    @Column(columnDefinition = "varchar(20) DEFAULT NULL COMMENT '수량'")
+    private Integer quantity;
 
     @Column(columnDefinition = "varchar(20) DEFAULT NULL COMMENT '상품 가격'")
     private BigDecimal price;

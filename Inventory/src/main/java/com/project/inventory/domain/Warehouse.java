@@ -1,8 +1,6 @@
 package com.project.inventory.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -11,6 +9,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Builder
+@Getter
+@Setter
 @DynamicInsert
 @DynamicUpdate
 @NoArgsConstructor
@@ -21,10 +21,11 @@ public class Warehouse extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "varchar(20) DEFAULT NULL COMMENT '상품 코드'")
-    private String itemId;
+    @ManyToOne
+    @JoinColumn(name ="item_id")
+    private Item itemId;
 
-    @Column(columnDefinition = "varchar(20) DEFAULT NULL COMMENT '수량'")
+    @Column(columnDefinition = "Integer DEFAULT NULL COMMENT '수량'")
     private Integer quantity;
 
 }
