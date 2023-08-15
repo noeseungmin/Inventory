@@ -46,4 +46,10 @@ public class WarehouseController extends AbstractController{
         return ok(warehousingQuotationService.create(itemId, request));
 
     }
+
+    @PostMapping("/{itemId}/update")
+    public ResponseDto<WarehousingQuotationDto.Response> updatedQuotation(@PathVariable Long itemId,
+                                                                          @RequestBody WarehousingQuotationDto.Request request){
+        return ok(warehousingQuotationService.quotationCreate(itemId, request));
+    }
 }

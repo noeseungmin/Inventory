@@ -12,5 +12,7 @@ public interface WarehousingQuotationService {
 
     Response getQuotation(Long itemId);
 
+    Response quotationCreate(Long itemId, Request request);
+
     List<Response> getAll();
 }

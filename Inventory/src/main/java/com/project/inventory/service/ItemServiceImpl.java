@@ -5,6 +5,8 @@ import com.project.inventory.domain.ItemType;
 import com.project.inventory.dto.ItemDto;
 import com.project.inventory.dto.ItemDto.Request;
 import com.project.inventory.dto.ItemDto.Response;
+import com.project.inventory.exception.BaseException;
+import com.project.inventory.exception.ResultType;
 import com.project.inventory.repository.ItemRepository;
 import com.project.inventory.repository.ItemTypeRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +36,7 @@ public class ItemServiceImpl implements ItemService{
         ItemType byName = itemTypeRepository.findByName(typeName);
         item.setTypeCode(byName.getTypeCode());
 
-        
+
         Item created = itemRepository.save(item);
 
         return modelMapper.map(created, Response.class);
@@ -61,5 +63,19 @@ public class ItemServiceImpl implements ItemService{
         List<Item> items = itemRepository.findByTypeNameContainingAndQuantityLessThanEqual(typeName,quantity);
 
         return items.stream().map(r -> modelMapper.map(r, Response.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Response quantityUpdate(Long itemId, ItemDto.WarehousingRequest request) {
+        Item item = itemRepository.findById(itemId).orElseThrow(() -> {
+            throw new BaseException(ResultType.SYSTEM_ERROR);
+        });
+        Integer updateQuantity = item.getQuantity();
+        Integer warehousingQuantity = request.getWarehousingQuantity();
+        updateQuantity = (updateQuantity + warehousingQuantity);
+        item.setQuantity(updateQuantity);
+
+        Item updated = itemRepository.save(item);
+        return modelMapper.map(updated, Response.class);
     }
 }

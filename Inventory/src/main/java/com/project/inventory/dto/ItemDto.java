@@ -49,4 +49,13 @@ public class ItemDto implements Serializable {
         private Integer quantity;
     }
 
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    @Setter
+    @Builder
+    public static class WarehousingRequest{
+        private Integer warehousingQuantity;
+    }
+
 }
