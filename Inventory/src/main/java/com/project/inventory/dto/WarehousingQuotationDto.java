@@ -13,7 +13,7 @@ public class WarehousingQuotationDto implements Serializable {
     @Getter
     @Builder
     public static class Request{
-        private Integer quantity;
+        private Integer warehousingQuantity;
     }
 
     @NoArgsConstructor
@@ -25,7 +25,7 @@ public class WarehousingQuotationDto implements Serializable {
         private Long id;
         private String warehousingCode;
         private Item ItemId;
-        private Integer quantity;
+        private Integer warehousingQuantity;
         private BigDecimal totalPrice;
     }
 }

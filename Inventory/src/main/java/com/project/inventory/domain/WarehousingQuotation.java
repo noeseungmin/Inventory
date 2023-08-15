@@ -30,7 +30,7 @@ public class WarehousingQuotation extends BaseEntity{
     private Item itemId;
 
     @Column(columnDefinition = "Integer DEFAULT NULL COMMENT '수량'")
-    private Integer quantity;
+    private Integer warehousingQuantity;
 
     @Column(columnDefinition = "varchar(20) DEFAULT NULL COMMENT '총 금액'")
     private BigDecimal totalPrice;

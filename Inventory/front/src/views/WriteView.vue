@@ -8,9 +8,27 @@ const router = useRouter()
 
 const items = ref([]);
 
-const quantity = ref("")
+const warehousingQuantity = ref("")
 
 let rowId = ref("")
+
+const itemsCreate = () => {
+  router.push({
+    path: "/item",
+  });
+};
+
+const typesCreate = () => {
+  router.push({
+    path: "/type",
+  });
+};
+
+const warehousing = () => {
+  router.push({
+    path: "/quotation",
+  });
+};
 
 
 const rowClick = function (row) {
@@ -19,10 +37,9 @@ const rowClick = function (row) {
 }
 
 
-
 const itemCreate = function (rowId) {
     axios.post(`/api/warehouse/${rowId}` ,{
-      quantity: quantity.value
+      warehousingQuantity: warehousingQuantity.value
     })
         .then(() => {
           router.replace({name: "quotation"});
@@ -36,11 +53,7 @@ axios.get("/api/items").then(response => {
   });
 });
 
-// axios.get("/api/warehouse/:itemId/quotation").then(response => {
-//   response.data.data.forEach((r: any) => {
-//     quotation.value.push(r)
-//   });
-// });
+
 </script>
 
 <template>
@@ -48,9 +61,9 @@ axios.get("/api/items").then(response => {
     <el-container>
       <el-header>
         <el-button type="primary" @click="write()">발주요청</el-button>
-        <RouterLink to="/quotation">입고요청</RouterLink>
-        <RouterLink to="/item">상품 등록</RouterLink>
-        <RouterLink to="/type">상품분류추가</RouterLink>
+        <el-button type="primary" @click="warehousing()">입고요청</el-button>
+        <el-button type="primary" @click="itemsCreate()">상품등록</el-button>
+        <el-button type="primary" @click="typesCreate()">상품분류추가</el-button>
       </el-header>
       <el-main>
         <el-table :data="items" @row-click="rowClick">
@@ -67,7 +80,7 @@ axios.get("/api/items").then(response => {
                      el-input-width="100px"
             >
               <el-form-item label="요청 수량">
-                <el-input v-model="quantity"></el-input>
+                <el-input v-model="warehousingQuantity"></el-input>
               </el-form-item>
             </el-form>
           </el-col>

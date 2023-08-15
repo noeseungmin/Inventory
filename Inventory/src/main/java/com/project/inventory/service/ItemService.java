@@ -3,7 +3,7 @@ package com.project.inventory.service;
 import com.project.inventory.dto.ItemDto;
 import com.project.inventory.dto.ItemDto.Request;
 import com.project.inventory.dto.ItemDto.Response;
-import com.project.inventory.dto.ItemDto.SearchRequest;
+import com.project.inventory.dto.ItemDto.WarehousingRequest;
 
 import java.util.List;
 
@@ -17,5 +17,5 @@ public interface ItemService {
 
     List<Response> ShortageProducts(String typeName, Integer quantity);
 
-
+    Response quantityUpdate(Long itemId, WarehousingRequest request);
 }
